@@ -6,11 +6,51 @@
              mc:Ignorable="d"
              x:Class="Rossy.App.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Orientation="Horizontal"
+                     Grid.Row="0"
+                     Grid.Column="0">
+            <Entry x:Name="txtFilePath"
+                   HorizontalOptions="FillAndExpand" />
+            <Button x:Name="btnPickFile"
+                    Text="Pick"
+                    Clicked="btnPickFile_Clicked" />
+            <Button x:Name="btnTakePicture"
+                    Text="Take"
+                    Clicked="btnTakePicture_Clicked" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     Grid.Row="1"
+                     Grid.Column="0">
+            <Entry x:Name="txtUtterance"
+                   HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal"
+                     Grid.Row="2"
+                     Grid.Column="0">
+            <Button x:Name="btnAnalyze"
+                    Text="Analyse"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="btnAnalyze_Clicked" />
+        </StackLayout>
+
         <Label Text="Welcome to Rossy!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               Grid.Row="3"
+               Grid.Column="0" />
+    </Grid>
 
 </ContentPage>

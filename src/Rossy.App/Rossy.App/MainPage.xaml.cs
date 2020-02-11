@@ -16,6 +16,24 @@ namespace Rossy.App
         public MainPage()
         {
             InitializeComponent();
+
+            txtUtterance.Text = "what's up?";
+            txtFilePath.Text = "";
+        }
+
+        private void btnPickFile_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTakePicture_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAnalyze_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
