@@ -20,37 +20,40 @@
         <StackLayout Orientation="Horizontal"
                      Grid.Row="0"
                      Grid.Column="0">
-            <Entry x:Name="txtFilePath"
+            <Entry x:Name="TxtFilePath"
                    HorizontalOptions="FillAndExpand" />
-            <Button x:Name="btnPickFile"
+            <Button x:Name="BtnPickFile"
                     Text="Pick"
-                    Clicked="btnPickFile_Clicked" />
-            <Button x:Name="btnTakePicture"
+                    Clicked="BtnPickFile_Clicked" />
+            <Button x:Name="BtnTakePicture"
                     Text="Take"
-                    Clicked="btnTakePicture_Clicked" />
+                    Clicked="BtnTakePicture_Clicked" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      Grid.Row="1"
                      Grid.Column="0">
-            <Entry x:Name="txtUtterance"
+            <Entry x:Name="TxtUtterance"
                    HorizontalOptions="FillAndExpand" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      Grid.Row="2"
                      Grid.Column="0">
-            <Button x:Name="btnAnalyze"
+            <Button x:Name="BtnAnalyze"
                     Text="Analyse"
                     HorizontalOptions="FillAndExpand"
-                    Clicked="btnAnalyze_Clicked" />
+                    Clicked="BtnAnalyze_Clicked" />
         </StackLayout>
 
-        <Label Text="Welcome to Rossy!" 
+        <StackLayout Grid.Row="3"
+                     Grid.Column="0">
+            <Label Text="Welcome to Rossy!" 
                HorizontalOptions="Center"
-               VerticalOptions="CenterAndExpand"
-               Grid.Row="3"
-               Grid.Column="0" />
+               VerticalOptions="StartAndExpand" />
+            <Image x:Name="CurrentImage"
+                   VerticalOptions="EndAndExpand" />
+        </StackLayout>
     </Grid>
 
 </ContentPage>

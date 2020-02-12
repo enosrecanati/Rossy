@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,21 +19,54 @@ namespace Rossy.App
         {
             InitializeComponent();
 
-            txtUtterance.Text = "what's up?";
-            txtFilePath.Text = "";
+            TxtUtterance.Text = "what's up?";
+            TxtFilePath.Text = "";
         }
 
-        private void btnPickFile_Clicked(object sender, EventArgs e)
+        private void BtnPickFile_Clicked(object sender, EventArgs e)
         {
 
         }
 
-        private void btnTakePicture_Clicked(object sender, EventArgs e)
+        private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
+            await CrossMedia.Current.Initialize();
 
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Test",
+                SaveToAlbum = true,
+                CompressionQuality = 75,
+                CustomPhotoSize = 50,
+                PhotoSize = PhotoSize.MaxWidthHeight,
+                MaxWidthHeight = 2000,
+                DefaultCamera = CameraDevice.Front
+            });
+
+            if (file == null)
+            {
+                return;
+            }
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+            CurrentImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+
+                return stream;
+            });
         }
 
-        private void btnAnalyze_Clicked(object sender, EventArgs e)
+        private void BtnAnalyze_Clicked(object sender, EventArgs e)
         {
 
         }
