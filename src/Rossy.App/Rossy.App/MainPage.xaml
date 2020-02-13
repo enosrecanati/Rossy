@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -41,19 +42,23 @@
                      Grid.Row="2"
                      Grid.Column="0">
             <Button x:Name="BtnAnalyze"
-                    Text="Analyse"
+                    Text="Analyze"
                     HorizontalOptions="FillAndExpand"
                     Clicked="BtnAnalyze_Clicked" />
         </StackLayout>
 
-        <StackLayout Grid.Row="3"
-                     Grid.Column="0">
-            <Label Text="Welcome to Rossy!" 
-               HorizontalOptions="Center"
-               VerticalOptions="StartAndExpand" />
-            <Image x:Name="CurrentImage"
-                   VerticalOptions="EndAndExpand" />
-        </StackLayout>
+        <Image x:Name="CurrentImage"
+               VerticalOptions="FillAndExpand"
+               Grid.Row="3"
+               Grid.Column="0" />
+
+        <Editor x:Name="TxtAnalysisResult"
+                Text="Welcome to Rossy!"
+                IsReadOnly="true"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Grid.Row="4"
+                Grid.Column="0" />
     </Grid>
 
 </ContentPage>
