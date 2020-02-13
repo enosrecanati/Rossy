@@ -23,9 +23,32 @@ namespace Rossy.App
             TxtFilePath.Text = "";
         }
 
-        private void BtnPickFile_Clicked(object sender, EventArgs e)
+        private async void BtnPickFile_Clicked(object sender, EventArgs e)
         {
+            await CrossMedia.Current.Initialize();
 
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+
+                return;
+            }
+            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Medium
+            });
+
+
+            if (file == null)
+                return;
+
+            CurrentImage.Source = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                file.Dispose();
+
+                return stream;
+            });
         }
 
         private async void BtnTakePicture_Clicked(object sender, EventArgs e)
@@ -39,9 +62,9 @@ namespace Rossy.App
                 return;
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
-                Directory = "Test",
+                Directory = "Rossy",
                 SaveToAlbum = true,
                 CompressionQuality = 75,
                 CustomPhotoSize = 50,
